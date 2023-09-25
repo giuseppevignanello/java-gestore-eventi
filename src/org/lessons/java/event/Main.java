@@ -24,7 +24,7 @@ public class Main {
 			System.out.println("Invalid Data: " + e.getMessage());
 		}
 		}
-		 
+		
 		//Reservation
 		System.out.println("Do you want to reserve any seats? y/n");
 		String userReservetionChioce = sc.nextLine();
@@ -36,12 +36,17 @@ public class Main {
 		}
 		
 		if(userReservationNumber > 0) {
+			if(userReservationNumber > event.getAvailableSeats()) {
+				System.out.println("Sorry, we have not all these available seats \n" +
+									"Available seats: " + event.getAvailableSeats());
+			} else {
 			for (int i = 0; i < userReservationNumber; i++) {
 				try {
 					event.reserveSeat();
 				} catch (Exception e) {
 					System.out.println(e.getMessage());
 				}
+			}
 			}
 		}
 		
@@ -71,7 +76,7 @@ public class Main {
 		}
 		
 		System.out.println("Reserved Seats: " + event.getReservedSeats());
-		System.out.println("Available Seats: " + (event.getTotalSeats() - event.getReservedSeats()));
+		System.out.println("Available Seats: " + event.getAvailableSeats());
 
 
 		

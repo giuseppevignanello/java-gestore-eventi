@@ -75,6 +75,10 @@ public class Event {
 		return reservedSeats;
 	}
 	
+	public int getAvailableSeats() {
+		return this.getTotalSeats() - this.getReservedSeats();
+	}
+	
 	
 	
 	@Override 
