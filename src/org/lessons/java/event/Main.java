@@ -24,25 +24,40 @@ public class Main {
 		ProgrammEvent programm = new ProgrammEvent("Programma");	
 		
 		for (int i = 0; i < eventsNumber; i++) {
-			Concert concert = null;
+			Event event = null;
 			//Event event = null;
 			boolean validData = false;
 			
 			while(!validData) {
 			try {
+				System.out.println("Insert the event type (Concert/Show): ");
+	            String eventType = sc.nextLine().toLowerCase();
+	            
+	            if(!eventType.equals("concert") && !eventType.equals("show")) {
+	            	System.out.println("Please insert CONCERT or SHOW");
+	            	continue;
+	            }
+	            
 				System.out.println("Insert the title: ");
 				String title = sc.nextLine();
 				System.out.println("Insert the date (yyyy-MM-dd)");
 				LocalDate date = LocalDate.parse(sc.nextLine()) ; 
-				System.out.println("Insert the time (hh:mm:ss)");
-				LocalTime hour = LocalTime.parse(sc.nextLine());
+				LocalTime hour = null;
+				if(eventType.equals("concert") ) {
+					System.out.println("Insert the time (hh:mm:ss)");
+					hour = LocalTime.parse(sc.nextLine());
+				}
 				System.out.println("Insert price: (##.##)");
 				BigDecimal price = new BigDecimal(sc.nextLine());
 				System.out.println("Insert the number of total seats");
 				int totalSeats = Integer.parseInt(sc.nextLine());
-				concert = new Concert (title, date, totalSeats, hour, price);
+				if(eventType.equals("concert")) {
+					event = new Concert (title, date, totalSeats, hour, price);
+				} else if (eventType.equals("show")) {
+					event = new Show (title, date, totalSeats, price);
+				}
 				validData = true;
-				System.out.println(concert.toString());
+				System.out.println(event.toString());
 			} catch (Exception e) {
 				System.out.println("Invalid Data: " + e.getMessage());
 			}
@@ -61,7 +76,7 @@ public class Main {
 			if(userReservationNumber > 0) {
 				for (int j = 0; j < userReservationNumber; j++) {
 					try {
-						concert.reserveSeat();
+						event.reserveSeat();
 					} catch (Exception e) {
 						System.out.println(e.getMessage());
 						break;
@@ -72,8 +87,8 @@ public class Main {
 			
 			
 			//Cancellation
-			System.out.println("Reserved Seats: " + concert.getReservedSeats());
-			System.out.println("Available Seats: " + (concert.getTotalSeats() - concert.getReservedSeats()));
+			System.out.println("Reserved Seats: " + event.getReservedSeats());
+			System.out.println("Available Seats: " + (event.getTotalSeats() - event.getReservedSeats()));
 			
 			
 			System.out.println("Do you want to cancel any reservation? y/n");
@@ -88,7 +103,7 @@ public class Main {
 			if(userCancellationNumber > 0) {
 					for (int x = 0; x < userCancellationNumber; x++) {
 						try {
-							concert.cancelSeat();
+							event.cancelSeat();
 						} catch (Exception e) {
 							System.out.println(e.getMessage());
 							break;
@@ -98,15 +113,16 @@ public class Main {
 				
 			}
 			
-			System.out.println("Reserved Seats: " + concert.getReservedSeats());
-			System.out.println("Available Seats: " + concert.getAvailableSeats());
+			System.out.println("Reserved Seats: " + event.getReservedSeats());
+			System.out.println("Available Seats: " + event.getAvailableSeats());
 			
-			programm.addEvent(concert);
+			programm.addEvent(event);
 		}
 		
 		//LocalDate exampleDate = LocalDate.of(2025, 10, 5);
 		
 		//System.out.println(programm.getEventsInADate(exampleDate));
+		System.out.println("There are " + programm.getEventsNumber() + " events");
 		System.out.println(programm.getElementsOrderedByDate());
 		sc.close();
 		
