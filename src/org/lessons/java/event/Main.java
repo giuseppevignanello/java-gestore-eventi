@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 public class Main {
 	public static void main(String[] args) {
+		
 		int eventsNumber = 0;
 		Scanner sc = new Scanner(System.in); 
 		
@@ -69,7 +70,7 @@ public class Main {
 			int userReservationNumber = 0;
 			
 			if(userReservetionChioce.toLowerCase().equals("y")) {
-				System.out.println("How many  seat you want to reserve?");
+				System.out.println("How many seat you want to reserve?");
 				userReservationNumber = Integer.parseInt(sc.nextLine());
 			}
 			
@@ -124,6 +125,9 @@ public class Main {
 		//System.out.println(programm.getEventsInADate(exampleDate));
 		System.out.println("There are " + programm.getEventsNumber() + " events");
 		System.out.println(programm.getElementsOrderedByDate());
+		System.out.println("Average Concerts price: $" + programm.avgConcertPrice());
+		System.out.println("Average Shows price: $" + programm.avgShowPrice());
+		System.out.println("Average Events price: $" + programm.avgEventPrice());
 		sc.close();
 		
 		

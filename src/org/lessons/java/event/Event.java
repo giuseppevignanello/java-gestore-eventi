@@ -1,10 +1,14 @@
 package org.lessons.java.event;
 
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.time.format.DateTimeFormatter;
+
+import org.lessons.java.event.inter.Price;
+
 import java.time.LocalDate;
 
-public class Event {
+public class Event implements Price{
 	private String title; 
 	private LocalDate date; 
 	private int totalSeats; 
@@ -87,6 +91,10 @@ public class Event {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		String dateAsString = this.getDate().format(formatter);
 		return dateAsString + " " + this.getTitle();
+	}
+
+	public BigDecimal getPrice() {
+		return null;
 	}
 
 	

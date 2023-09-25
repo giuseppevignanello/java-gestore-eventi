@@ -35,7 +35,8 @@ public class Concert extends Event {
 		this.hour = hour;
 	}
 
-
+	
+	@Override
 	public BigDecimal getPrice() {
 		return price;
 	}

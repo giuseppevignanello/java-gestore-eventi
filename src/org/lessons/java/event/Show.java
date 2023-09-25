@@ -12,6 +12,7 @@ public class Show extends Event{
 		setPrice(price);
 	}
 
+	@Override
 	public BigDecimal getPrice() {
 		return price;
 	}
