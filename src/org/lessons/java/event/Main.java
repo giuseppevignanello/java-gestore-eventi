@@ -24,8 +24,31 @@ public class Main {
 			System.out.println("Invalid Data: " + e.getMessage());
 		}
 		}
+		 
+		System.out.println("Do you want to reserve any seats? y/n");
+		String userReservetionChioce = sc.nextLine();
+		int userReservationNumber = 0;
 		
-		System.out.println(event.toString());
+		if(userReservetionChioce.toLowerCase().equals("y")) {
+			System.out.println("How many  seat you want to reserve?");
+			userReservationNumber = Integer.parseInt(sc.nextLine());
+		}
+		
+		if(userReservationNumber > 0) {
+			for (int i = 0; i < userReservationNumber; i++) {
+				try {
+					event.reserveSeat();
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+				}
+			}
+		}
+		
+		System.out.println("Reserved Seats: " + event.getReservedSeats());
+		System.out.println("Available Seats: " + (event.getTotalSeats() - event.getReservedSeats()));
+
+		
+		
 		
 		
 		
