@@ -1,13 +1,16 @@
 package org.lessons.java.event;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Scanner;
 
 public class Main {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in); 
 		
-		Event event = null;
+		Concert concert = null;
+		//Event event = null;
 		boolean validData = false;
 		
 		while(!validData) {
@@ -16,10 +19,15 @@ public class Main {
 			String title = sc.nextLine();
 			System.out.println("Insert the date (yyyy-MM-dd)");
 			LocalDate date = LocalDate.parse(sc.nextLine()) ; 
+			System.out.println("Insert the time (hh:mm:ss)");
+			LocalTime hour = LocalTime.parse(sc.nextLine());
+			System.out.println("Insert price: (##.##)");
+			BigDecimal price = new BigDecimal(sc.nextLine());
 			System.out.println("Insert the number of total seats");
 			int totalSeats = Integer.parseInt(sc.nextLine());
-			event = new Event (title, date, totalSeats);
+			concert = new Concert (title, date, totalSeats, hour, price);
 			validData = true;
+			System.out.println(concert.toString());
 		} catch (Exception e) {
 			System.out.println("Invalid Data: " + e.getMessage());
 		}
@@ -36,13 +44,13 @@ public class Main {
 		}
 		
 		if(userReservationNumber > 0) {
-			if(userReservationNumber > event.getAvailableSeats()) {
+			if(userReservationNumber > concert.getAvailableSeats()) {
 				System.out.println("Sorry, we have not all these available seats \n" +
-									"Available seats: " + event.getAvailableSeats());
+									"Available seats: " + concert.getAvailableSeats());
 			} else {
 			for (int i = 0; i < userReservationNumber; i++) {
 				try {
-					event.reserveSeat();
+					concert.reserveSeat();
 				} catch (Exception e) {
 					System.out.println(e.getMessage());
 				}
@@ -52,8 +60,8 @@ public class Main {
 		
 		
 		//Cancellation
-		System.out.println("Reserved Seats: " + event.getReservedSeats());
-		System.out.println("Available Seats: " + (event.getTotalSeats() - event.getReservedSeats()));
+		System.out.println("Reserved Seats: " + concert.getReservedSeats());
+		System.out.println("Available Seats: " + (concert.getTotalSeats() - concert.getReservedSeats()));
 		
 		
 		System.out.println("Do you want to cancel any reservation? y/n");
@@ -68,15 +76,15 @@ public class Main {
 		if(userCancellationNumber > 0) {
 			for (int i = 0; i < userCancellationNumber; i++) {
 				try {
-					event.cancelSeat();
+					concert.cancelSeat();
 				} catch (Exception e) {
 					System.out.println(e.getMessage());
 				}
 			}
 		}
 		
-		System.out.println("Reserved Seats: " + event.getReservedSeats());
-		System.out.println("Available Seats: " + event.getAvailableSeats());
+		System.out.println("Reserved Seats: " + concert.getReservedSeats());
+		System.out.println("Available Seats: " + concert.getAvailableSeats());
 
 
 		
