@@ -1,5 +1,7 @@
 package org.lessons.java.event;
 
+import java.text.DateFormat;
+import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 
 public class Event {
@@ -15,6 +17,27 @@ public class Event {
 		this.reservedSeats = 0;
 	}
 
+	public void reserveSeat() throws Exception {
+		if(this.date.isBefore(LocalDate.now())) {
+			throw new Exception ("Sorry, the event has already ended :(");
+		} else if(this.reservedSeats >= this.totalSeats) {
+			throw new Exception ("Sorry, the event is sold out :(");
+		} else {
+			this.reservedSeats ++;
+		}	
+	}
+	
+	public void cancelSeat() throws Exception {
+		if(this.date.isBefore(LocalDate.now())) {
+			throw new Exception ("Sorry, the event has already ended :(");
+		} else if(this.reservedSeats == 0) {
+			throw new Exception ("Are you sure you have booked?");
+		} else {
+			this.reservedSeats --;
+		}
+	}
+	
+	//getters and setters
 	public String getTitle() {
 		return title;
 	}
@@ -44,6 +67,15 @@ public class Event {
 
 	public int getReservedSeats() {
 		return reservedSeats;
+	}
+	
+	
+	
+	@Override 
+	public String toString() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		String dateAsString = this.getDate().format(formatter);
+		return dateAsString + " " + this.getTitle();
 	}
 
 	
