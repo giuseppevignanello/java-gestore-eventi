@@ -42,7 +42,10 @@ public class Event {
 		return title;
 	}
 
-	public void setTitle(String title) {
+	public void setTitle(String title) throws Exception {
+		if(title.isBlank()) {
+			throw new Exception("Title can't be empty");
+		}
 		this.title = title;
 	}
 
@@ -61,7 +64,10 @@ public class Event {
 		return totalSeats;
 	}
 
-	public void setTotalSeats(int totalSeats) {
+	public void setTotalSeats(int totalSeats) throws Exception {
+		if(totalSeats <= 0) {
+			throw new Exception ("Total seats can't be 0 or less");
+		}
 		this.totalSeats = totalSeats;
 	}
 

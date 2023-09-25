@@ -1,37 +1,40 @@
 package org.lessons.java.event;
 
 import java.time.LocalDate;
+import java.util.Scanner;
 
 public class Main {
 	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in); 
 		
-		LocalDate event1Date = LocalDate.of(2024, 9, 30);
-		Event event1 = null;
+		Event event = null;
+		boolean validData = false;
+		
+		while(!validData) {
 		try {
-			event1 = new Event("Concertone", event1Date, 300);
+			System.out.println("Do you wanna add a new event? Insert the title: ");
+			String title = sc.nextLine();
+			System.out.println("Insert the date (yyyy-MM-dd)");
+			LocalDate date = LocalDate.parse(sc.nextLine()) ; 
+			System.out.println("Insert the number of total seats");
+			int totalSeats = Integer.parseInt(sc.nextLine());
+			event = new Event (title, date, totalSeats);
+			validData = true;
 		} catch (Exception e) {
 			System.out.println("Invalid Data: " + e.getMessage());
 		}
-		
-		
-		System.out.println(event1.toString());
-		
-		System.out.println("Reserved seats: " +  event1.getReservedSeats());
-		
-		try {
-			event1.reserveSeat();
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		System.out.println("Reserved seats: " +  event1.getReservedSeats());
-		
-		try {
-			event1.cancelSeat();
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
 		}
 		
-		System.out.println("Reserved seats: " +  event1.getReservedSeats());
+		System.out.println(event.toString());
+		
+		
+		
+		sc.close();
+		
+		
+	
+		
+		
 		
 		
 	}
