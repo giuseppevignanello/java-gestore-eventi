@@ -104,10 +104,10 @@ public class Main {
 			programm.addEvent(concert);
 		}
 		
-		LocalDate exampleDate = LocalDate.of(2025, 10, 5);
+		//LocalDate exampleDate = LocalDate.of(2025, 10, 5);
 		
-		System.out.println(programm.getEventsInADate(exampleDate));
-
+		//System.out.println(programm.getEventsInADate(exampleDate));
+		System.out.println(programm.getElementsOrderedByDate());
 		sc.close();
 		
 		

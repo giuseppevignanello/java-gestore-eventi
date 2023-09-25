@@ -1,7 +1,9 @@
 package org.lessons.java.event;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ProgrammEvent {
@@ -35,6 +37,20 @@ public class ProgrammEvent {
 	
 	public void emptyEventsList() {
 		events.clear();
+	}
+	
+	public String getElementsOrderedByDate() {
+		Collections.sort(events, (event1, event2) -> event1.getDate().compareTo(event2.getDate()));
+		String orderedList = "";
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		for (Event event : events) {
+			orderedList += 
+			(event.getDate().format(formatter) + "-" +
+			event.getTitle() + "\n");
+		}
+		return this.getTitle() + "\n" + orderedList;
+				
+	
 	}
 	
 
