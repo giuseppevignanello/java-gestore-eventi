@@ -59,18 +59,15 @@ public class Main {
 			}
 			
 			if(userReservationNumber > 0) {
-				if(userReservationNumber > concert.getAvailableSeats()) {
-					System.out.println("Sorry, we have not all these available seats \n" +
-										"Available seats: " + concert.getAvailableSeats());
-				} else {
 				for (int j = 0; j < userReservationNumber; j++) {
 					try {
 						concert.reserveSeat();
 					} catch (Exception e) {
 						System.out.println(e.getMessage());
+						break;
 					}
 				}
-				}
+				
 			}
 			
 			
@@ -84,18 +81,21 @@ public class Main {
 			int userCancellationNumber = 0;
 			
 			if(userCancellationChioce.toLowerCase().equals("y")) {
-				System.out.println("How many  seat you want to reserve?");
+				System.out.println("How many  seat you want to cancel?");
 				userCancellationNumber = Integer.parseInt(sc.nextLine());
 			}
 			
 			if(userCancellationNumber > 0) {
-				for (int x = 0; x < userCancellationNumber; x++) {
-					try {
-						concert.cancelSeat();
-					} catch (Exception e) {
-						System.out.println(e.getMessage());
+					for (int x = 0; x < userCancellationNumber; x++) {
+						try {
+							concert.cancelSeat();
+						} catch (Exception e) {
+							System.out.println(e.getMessage());
+							break;
+						}
 					}
-				}
+				
+				
 			}
 			
 			System.out.println("Reserved Seats: " + concert.getReservedSeats());

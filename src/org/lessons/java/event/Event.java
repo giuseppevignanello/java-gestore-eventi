@@ -22,7 +22,8 @@ public class Event {
 			throw new Exception ("Sorry, the event has already ended :(");
 		} else if(this.reservedSeats >= this.totalSeats) {
 			throw new Exception ("Sorry, the event is sold out :(");
-		} else {
+		} 
+		else {
 			this.reservedSeats ++;
 		}	
 	}
