@@ -25,6 +25,7 @@ public class Main {
 		}
 		}
 		 
+		//Reservation
 		System.out.println("Do you want to reserve any seats? y/n");
 		String userReservetionChioce = sc.nextLine();
 		int userReservationNumber = 0;
@@ -44,8 +45,34 @@ public class Main {
 			}
 		}
 		
+		
+		//Cancellation
 		System.out.println("Reserved Seats: " + event.getReservedSeats());
 		System.out.println("Available Seats: " + (event.getTotalSeats() - event.getReservedSeats()));
+		
+		
+		System.out.println("Do you want to cancel any reservation? y/n");
+		String userCancellationChioce = sc.nextLine();
+		int userCancellationNumber = 0;
+		
+		if(userCancellationChioce.toLowerCase().equals("y")) {
+			System.out.println("How many  seat you want to reserve?");
+			userCancellationNumber = Integer.parseInt(sc.nextLine());
+		}
+		
+		if(userCancellationNumber > 0) {
+			for (int i = 0; i < userCancellationNumber; i++) {
+				try {
+					event.cancelSeat();
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+				}
+			}
+		}
+		
+		System.out.println("Reserved Seats: " + event.getReservedSeats());
+		System.out.println("Available Seats: " + (event.getTotalSeats() - event.getReservedSeats()));
+
 
 		
 		
