@@ -52,46 +52,20 @@ public class ProgrammEvent {
 
 	}
 
+	public BigDecimal avgPriceByType(Class<? extends Event> eventType) {
+	    BigDecimal sum = BigDecimal.ZERO;
+	    int eventCounter = 0;
+
+	    for (Event event : events) {
+	        if (eventType.isInstance(event)) {
+	            sum = sum.add(event.getPrice());
+	            eventCounter++;
+	        }
+	    }
+
+	    return sum.divide(BigDecimal.valueOf(eventCounter), 2, RoundingMode.HALF_UP);
+	}
 	
-	
-	public BigDecimal avgConcertPrice() {
-		BigDecimal sum = BigDecimal.ZERO;
-		int concertCounter = 0;
-		for (Event event : events) {
-			if (event instanceof Concert) {
-				sum = sum.add(event.getPrice());
-				concertCounter++;
-			}
-		}
-
-		return sum.divide(BigDecimal.valueOf(concertCounter), 2, RoundingMode.HALF_UP);
-	}
-
-	public BigDecimal avgShowPrice() {
-		BigDecimal sum = BigDecimal.ZERO;
-		int showCounter = 0;
-		for (Event event : events) {
-			if (event instanceof Show) {
-				sum = sum.add(event.getPrice());
-				showCounter++;
-			}
-		}
-
-		return sum.divide(BigDecimal.valueOf(showCounter), 2, RoundingMode.HALF_UP);
-	}
-
-	public BigDecimal avgEventPrice() {
-		BigDecimal sum = BigDecimal.ZERO;
-		int eventCounter = 0;
-		for (Event event : events) {
-
-			sum = sum.add(event.getPrice());
-			eventCounter++;
-
-		}
-
-		return sum.divide(BigDecimal.valueOf(eventCounter), 2, RoundingMode.HALF_UP);
-	}
 
 	public String getTitle() {
 		return title;

@@ -125,9 +125,9 @@ public class Main {
 		//System.out.println(programm.getEventsInADate(exampleDate));
 		System.out.println("There are " + programm.getEventsNumber() + " events");
 		System.out.println(programm.getElementsOrderedByDate());
-		System.out.println("Average Concerts price: $" + programm.avgConcertPrice());
-		System.out.println("Average Shows price: $" + programm.avgShowPrice());
-		System.out.println("Average Events price: $" + programm.avgEventPrice());
+		System.out.println("Average Concerts price: $" + programm.avgPriceByType(Concert.class));
+		System.out.println("Average Shows price: $" + programm.avgPriceByType(Show.class));
+		System.out.println("Average Events price: $" + programm.avgPriceByType(Event.class));;
 		sc.close();
 		
 		
