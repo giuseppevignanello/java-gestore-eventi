@@ -10,9 +10,11 @@ import java.util.List;
 
 public class ProgrammEvent {
 
+	//data
 	private String title;
 	private List<Event> events;
 
+	
 	public ProgrammEvent(String title) {
 		setTitle(title);
 		events = new ArrayList<Event>();
@@ -52,13 +54,19 @@ public class ProgrammEvent {
 
 	}
 
-	public BigDecimal avgPriceByType(Class<? extends Event> eventType) {
+	public BigDecimal avgPriceByType(String type) {
+		
 	    BigDecimal sum = BigDecimal.ZERO;
 	    int eventCounter = 0;
 
 	    for (Event event : events) {
-	        if (eventType.isInstance(event)) {
-	            sum = sum.add(event.getPrice());
+	        if (event instanceof Concert && (type.equals("concert") || type.equals("both")) ) {
+	        	Concert newEvent = (Concert) event;
+	            sum = sum.add(newEvent.getPrice());
+	            eventCounter++;
+	        } else if(event instanceof Show && (type.equals("show") || type.equals("both"))) {
+	        	Show newEvent = (Show) event;
+	            sum = sum.add(newEvent.getPrice());
 	            eventCounter++;
 	        }
 	    }
@@ -67,6 +75,7 @@ public class ProgrammEvent {
 	}
 	
 
+	//getters and setters
 	public String getTitle() {
 		return title;
 	}

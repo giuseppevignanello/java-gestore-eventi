@@ -36,7 +36,7 @@ public class Concert extends Event {
 	}
 
 	
-	@Override
+
 	public BigDecimal getPrice() {
 		return price;
 	}

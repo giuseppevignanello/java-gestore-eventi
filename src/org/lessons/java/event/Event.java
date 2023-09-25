@@ -8,7 +8,7 @@ import org.lessons.java.event.inter.Price;
 
 import java.time.LocalDate;
 
-public class Event implements Price{
+public class Event{
 	private String title; 
 	private LocalDate date; 
 	private int totalSeats; 
@@ -93,9 +93,6 @@ public class Event implements Price{
 		return dateAsString + " " + this.getTitle();
 	}
 
-	public BigDecimal getPrice() {
-		return null;
-	}
 
 	
 }

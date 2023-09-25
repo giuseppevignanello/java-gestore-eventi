@@ -122,16 +122,27 @@ public class Main {
 		
 		//LocalDate exampleDate = LocalDate.of(2025, 10, 5);
 		
+		LocalDate eventDate = LocalDate.of(2025, 10, 05);
+		Event eventWithoutPrice = null;
+		try {
+			eventWithoutPrice = new Event ("event", eventDate, 300);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		programm.addEvent(eventWithoutPrice);
+		
+		
+		
 		//System.out.println(programm.getEventsInADate(exampleDate));
 		System.out.println("There are " + programm.getEventsNumber() + " events");
 		System.out.println(programm.getElementsOrderedByDate());
-		System.out.println("Average Concerts price: $" + programm.avgPriceByType(Concert.class));
-		System.out.println("Average Shows price: $" + programm.avgPriceByType(Show.class));
-		System.out.println("Average Events price: $" + programm.avgPriceByType(Event.class));;
+		System.out.println("Average Concerts price: $" + programm.avgPriceByType("concert"));
+		System.out.println("Average Shows price: $" + programm.avgPriceByType("show"));
+		System.out.println("Average Events price: $" + programm.avgPriceByType("both"));
 		sc.close();
-		
-		
-		
+
+				
 		
 		
 	}
